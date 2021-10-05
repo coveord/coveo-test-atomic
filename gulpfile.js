@@ -25,9 +25,9 @@ function copyResource() {
     .pipe(debug());
 }
 
-function copyResource() {
+function copyExtraResources() {
   return gulp
-    .src(["./images/**/*"])
+    .src(["./resources/**/*"])
     .pipe(gulp.dest("./public/build/assets"))
     .pipe(debug());
 }
@@ -55,6 +55,7 @@ function watch() {
 exports.default = gulp.series(
   installAtomicAlpha, 
   copyResource,
+  copyExtraResources,
   copyThemes,
   getTestPage
 );
@@ -62,6 +63,7 @@ exports.default = gulp.series(
 exports.dev = gulp.series(
   installAtomicAlpha,
   copyResource,
+  copyExtraResources,
   copyThemes,
   getTestPage,
   gulp.parallel(serveStart, watch)

@@ -25,6 +25,13 @@ function copyResource() {
     .pipe(debug());
 }
 
+function copyResource() {
+  return gulp
+    .src(["./images/**/*"])
+    .pipe(gulp.dest("./public/build/assets"))
+    .pipe(debug());
+}
+
 function copyThemes() {
   return gulp
     .src(["./public/build/themes/**/*"])

@@ -4,6 +4,14 @@ const exec = require("child_process").exec;
 const livereload = require("gulp-livereload");
 const download = require("gulp-download");
 
+function installAtomicBeta(cb) {
+  exec("npm i @coveo/atomic@beta", function (err, stdout, stderr) {
+    console.log(stdout);
+    console.log(stderr);
+    cb(err);
+  });
+}
+
 function installAtomicAlpha(cb) {
   exec("npm i @coveo/atomic@alpha", function (err, stdout, stderr) {
     console.log(stdout);
@@ -53,7 +61,7 @@ function watch() {
 }
 
 exports.default = gulp.series(
-  installAtomicAlpha, 
+  installAtomicBeta, 
   copyResource,
   copyExtraResources,
   copyThemes,
@@ -61,6 +69,15 @@ exports.default = gulp.series(
 );
 
 exports.dev = gulp.series(
+  installAtomicBeta,
+  copyResource,
+  copyExtraResources,
+  copyThemes,
+  getTestPage,
+  gulp.parallel(serveStart, watch)
+);
+
+exports.alpha = gulp.series(
   installAtomicAlpha,
   copyResource,
   copyExtraResources,

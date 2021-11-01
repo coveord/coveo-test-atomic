@@ -11,7 +11,7 @@ To force the latest Alpha (nightly) version, run:
 `gulp alpha`
 
 Revert back to Beta (QA) version with:
-`gulp beta`
+`gulp`
 
 ## Start server
 

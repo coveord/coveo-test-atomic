@@ -7,10 +7,10 @@ The gulp file will run automatically as a post-installation script, updating
 atomic to the latest beta (QA) version, copying assets from the package, and 
 downloading the latest `index.html` from the ui-kit repo.
 
-To force the latest Alpha (nightly) version, run:
+To force the latest Alpha (nightly) version, run:  
 `gulp alpha`
 
-Revert back to Beta (QA) version with:
+Revert back to Beta (QA) version with:  
 `gulp`
 
 ## Start server

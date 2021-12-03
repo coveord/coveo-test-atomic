@@ -218,6 +218,28 @@
       background-repeat: no-repeat;
       background-color: white;
     }
+
+    /* atomic-result-list::part(result-list){
+      background-color: red;
+    } */
+    /* atomic-result-list::part(result-table){
+      background-color: blue;
+    } */
+    atomic-result-list::part(result-table-heading) {
+      background-color: yellow;
+    }
+
+
+    /*
+ * @part result-list - The element containing every results of a result list
+ * @part result-table - The element of the result table containing a heading and a body
+ * @part result-table-heading - The element containing the row of cells in the result table's heading
+ * @part result-table-heading-row - The element containing cells of the result table's heading
+ * @part result-table-heading-cell - The element representing a cell of the result table's heading
+ * @part result-table-body - The element containing the rows of the result table's body
+ * @part result-table-row - The element containing the cells of a row in the result table's body
+ * @part result-table-cell - The element representing a cell of the result table's body
+ */
   </style>
   <style>
     /* Example of generic layout styling, mobile-first  */
@@ -368,8 +390,8 @@
         <atomic-format-currency currency="CAD"></atomic-format-currency>
       </atomic-numeric-facet>
       -->
-      <atomic-rating-facet field="attack" label="Attack" max-value-in-index=100 number-of-intervals=5
-        icon="assets://pokeicons/Square">
+      <atomic-rating-facet field="attack" label="Attack" max-value-in-index=10
+        icon="assets://pokeicons/rating_square.svg">
       </atomic-rating-facet>
       <!--
       <atomic-rating-range-facet facet-id="defense" field="defense" label="Defense" max-value-in-index=100
@@ -388,7 +410,7 @@
     </div>
     <div class="results">
       <atomic-did-you-mean></atomic-did-you-mean>
-      <atomic-result-list fields-to-include="snrating,sncost,image" image="small">
+      <atomic-result-list fields-to-include="snrating,sncost,image" display="grid" image="small">
         <atomic-result-template>
           <template>
             <style>
@@ -459,7 +481,8 @@
             </atomic-result-section-title>
             <atomic-result-section-title-metadata>
               <atomic-field-condition class="field" if-defined="snrating">
-                <atomic-result-rating field="snrating"></atomic-result-rating>
+                <atomic-result-rating field="snrating" icon="assets://pokeicons/rating_square.svg">
+                </atomic-result-rating>
               </atomic-field-condition>
               <atomic-field-condition class="field" if-not-defined="snrating">
                 <atomic-result-printable-uri max-number-of-parts="3"></atomic-result-printable-uri>

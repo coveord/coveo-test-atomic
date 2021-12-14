@@ -42,6 +42,59 @@
         //   amoreau: 'Alexandre Moreau',
         // });
 
+        function createSelect(options, defaultValue, onChange) {
+          const selectEl = document.createElement("select");
+          options.forEach(([name, label]) => {
+            const optionEl = document.createElement("option");
+            optionEl.value = name;
+            optionEl.innerText = label;
+            selectEl.appendChild(optionEl);
+          });
+          selectEl.value = defaultValue;
+          onChange(defaultValue);
+          selectEl.addEventListener("change", (e) => onChange(e.target.value));
+          return selectEl;
+        }
+
+        const resultList = document.querySelector("atomic-result-list");
+        const container = document.createElement("div");
+        container.setAttribute("style", "position: fixed; z-index: 1;");
+        container.prepend(
+          createSelect(
+            [
+              ["list", "List"],
+              ["grid", "Grid"],
+              ["table", "Table"]
+            ],
+            "list",
+            (v) => resultList.setAttribute("display", v)
+          )
+        );
+        container.prepend(
+          createSelect(
+            [
+              ["large", "Large"],
+              ["small", "Small"],
+              ["icon", "Icon"],
+              ["none", "None"]
+            ],
+            "icon",
+            (v) => resultList.setAttribute("image", v)
+          )
+        );
+        container.prepend(
+          createSelect(
+            [
+              ["comfortable", "Comfortable"],
+              ["normal", "Normal"],
+              ["compact", "Compact"]
+            ],
+            "normal",
+            (v) => resultList.setAttribute("density", v)
+          )
+        );
+        document.body.prepend(container);
+
         searchInterface.i18n.addResourceBundle('en', 'caption-filetype', {
           '.html': 'html',
         });

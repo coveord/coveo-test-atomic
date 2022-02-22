@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "postinstall": "gulp default",
     "start": "npx serve"
   },
   "keywords": [],

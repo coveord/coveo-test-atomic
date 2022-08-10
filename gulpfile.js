@@ -2,7 +2,7 @@ const gulp = require("gulp");
 const debug = require("gulp-debug");
 const exec = require("child_process").exec;
 const livereload = require("gulp-livereload");
-const snv = require("node-svn-ultimate");
+const svn = require("node-svn-ultimate");
 
 function installAtomicBeta(cb) {
   exec("npm i @coveo/atomic@beta", function (err, stdout, stderr) {

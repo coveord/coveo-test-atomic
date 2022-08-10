@@ -2,8 +2,7 @@ const gulp = require("gulp");
 const debug = require("gulp-debug");
 const exec = require("child_process").exec;
 const livereload = require("gulp-livereload");
-const download = require("gulp-download");
-const svnUltimate = require("node-svn-ultimate");
+const snv = require("node-svn-ultimate");
 
 function installAtomicBeta(cb) {
   exec("npm i @coveo/atomic@beta", function (err, stdout, stderr) {
@@ -22,7 +21,7 @@ function installAtomicAlpha(cb) {
 }
 
 function getTestPages(cb) {
-  return svnUltimate.commands.checkout(
+  return svn.commands.checkout(
     "https://github.com/coveo/ui-kit/trunk/packages/atomic/src/pages",
     "./public/",
     function (err, stdout, stderr) {

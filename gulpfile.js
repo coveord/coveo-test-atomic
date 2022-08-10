@@ -3,6 +3,7 @@ const debug = require("gulp-debug");
 const exec = require("child_process").exec;
 const livereload = require("gulp-livereload");
 const download = require("gulp-download");
+const svnUltimate = require("node-svn-ultimate");
 
 function installAtomicBeta(cb) {
   exec("npm i @coveo/atomic@beta", function (err, stdout, stderr) {
@@ -20,10 +21,16 @@ function installAtomicAlpha(cb) {
   });
 }
 
-function getTestPage() {
-  return download(
-    "https://raw.githubusercontent.com/coveo/ui-kit/master/packages/atomic/src/pages/index.html"
-  ).pipe(gulp.dest("public/"));
+function getTestPages(cb) {
+  return svnUltimate.commands.checkout(
+    "https://github.com/coveo/ui-kit/trunk/packages/atomic/src/pages",
+    "./public/",
+    function (err, stdout, stderr) {
+      console.log(stdout);
+      console.log(stderr);
+      cb(err);
+    }
+  );
 }
 
 function copyResource() {
@@ -57,15 +64,15 @@ function serveStart(cb) {
 
 function watch() {
   livereload.listen();
-  gulp.watch("./testPages/*.html", gulp.series(getTestPage));
+  gulp.watch("./testPages/*.html", gulp.series(getTestPages));
 }
 
 exports.default = gulp.series(
-  installAtomicBeta, 
+  installAtomicBeta,
   copyResource,
   copyExtraResources,
   copyThemes,
-  getTestPage
+  getTestPages
 );
 
 exports.dev = gulp.series(
@@ -73,7 +80,7 @@ exports.dev = gulp.series(
   copyResource,
   copyExtraResources,
   copyThemes,
-  getTestPage,
+  getTestPages,
   gulp.parallel(serveStart, watch)
 );
 
@@ -82,6 +89,6 @@ exports.alpha = gulp.series(
   copyResource,
   copyExtraResources,
   copyThemes,
-  getTestPage,
+  getTestPages,
   gulp.parallel(serveStart, watch)
 );

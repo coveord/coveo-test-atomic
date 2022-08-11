@@ -1,5 +1,6 @@
 node_modules/
 public/
+!public/cdn_test.html
 .idea/
 npm-debug.log
 .DS_Store

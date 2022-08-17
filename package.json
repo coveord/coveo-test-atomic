@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "postinstall": "gulp default",
-    "start": "npx serve"
+    "postinstall": "npx gulp default",
+    "start": "npx serve",
+    "upgrade-heroku": "git commit --allow-empty -m 'Upgrading heroku to current JSUI beta'"
   },
   "engines": {
     "node": "14.x"

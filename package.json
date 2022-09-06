@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "postinstall": "npx gulp default",
-    "start": "npx serve",
+    "start": "PORT=5002 npx serve",
     "upgrade-heroku": "git commit --allow-empty -m 'Upgrading heroku to current JSUI beta'"
   },
   "engines": {
@@ -15,7 +15,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@coveo/atomic": "^1.95.0",
+    "@coveo/atomic": "^1.106.1",
     "child_process": "^1.0.2",
     "gulp": "^4.0.2",
     "gulp-debug": "^4.0.0",

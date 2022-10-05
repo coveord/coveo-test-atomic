@@ -6,7 +6,7 @@
   "scripts": {
     "postinstall": "npx gulp default",
     "start": "npx serve",
-    "upgrade-heroku": "git commit --allow-empty -m 'Upgrading heroku to current JSUI beta'"
+    "upgrade-heroku": "git commit --allow-empty -m 'Upgrading heroku to current JSUI beta' && git push && git pull"
   },
   "engines": {
     "node": "14.x"
@@ -15,7 +15,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@coveo/atomic": "^1.106.1",
+    "@coveo/atomic": "^1.113.9",
     "child_process": "^1.0.2",
     "gulp": "^4.0.2",
     "gulp-debug": "^4.0.0",

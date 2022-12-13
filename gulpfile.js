@@ -12,6 +12,14 @@ function installAtomicBeta(cb) {
   });
 }
 
+function installAtomicV2(cb) {
+  exec("npm i @coveo/atomic@2.0.0-pre.6", function (err, stdout, stderr) {
+    console.log(stdout);
+    console.log(stderr);
+    cb(err);
+  });
+}
+
 function installAtomicAlpha(cb) {
   exec("npm i @coveo/atomic@alpha", function (err, stdout, stderr) {
     console.log(stdout);
@@ -22,7 +30,7 @@ function installAtomicAlpha(cb) {
 
 function getTestPages(cb) {
   return svn.commands.checkout(
-    "https://github.com/coveo/ui-kit/trunk/packages/atomic/src/pages",
+    "https://github.com/coveo/ui-kit/branches/prerelease/v2/packages/atomic/src/pages",
     "./public/",
     function (err, stdout, stderr) {
       console.log(stdout);
@@ -36,6 +44,13 @@ function copyResource() {
   return gulp
     .src(["./node_modules/@coveo/atomic/dist/atomic/**/*"])
     .pipe(gulp.dest("./public/build/"))
+    .pipe(debug());
+}
+
+function copyLocalTestFiles() {
+  return gulp
+    .src(["./testPages/*"])
+    .pipe(gulp.dest("./public"))
     .pipe(debug());
 }
 
@@ -67,19 +82,22 @@ function watch() {
 }
 
 exports.default = gulp.series(
-  installAtomicBeta,
-  copyResource,
-  copyExtraResources,
-  copyThemes,
-  getTestPages
-);
-
-exports.dev = gulp.series(
-  installAtomicBeta,
+  installAtomicV2,
   copyResource,
   copyExtraResources,
   copyThemes,
   getTestPages,
+  copyLocalTestFiles,
+
+);
+
+exports.dev = gulp.series(
+  installAtomicV2,
+  copyResource,
+  copyExtraResources,
+  copyThemes,
+  getTestPages,
+  copyLocalTestFiles,
   gulp.parallel(serveStart, watch)
 );
 
@@ -89,5 +107,6 @@ exports.alpha = gulp.series(
   copyExtraResources,
   copyThemes,
   getTestPages,
+  copyLocalTestFiles,
   gulp.parallel(serveStart, watch)
 );

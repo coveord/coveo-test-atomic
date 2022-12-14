@@ -18,6 +18,7 @@ Revert back to Beta (QA) version with:
 Run local server with:  
 `npm start`
 
+## Adding dependencies to Netlify build
 
-
-
+Dependencies available through [Homebrew](https://formulae.brew.sh/formula/) can be 
+added in the the [Brewfile](Brewfile.netlify)

@@ -1,1 +1,7 @@
+# Select tools to be installed automatically before the Netlify build command runs.
+#
+# For more info, see:
+# https://answers.netlify.com/t/now-in-experimental-alpha-homebrew-access-in-the-build-image/26074
+# https://homebrew-file.readthedocs.io/en/latest/usage.html#brewfile
+
 brew "subversion"

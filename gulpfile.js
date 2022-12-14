@@ -12,8 +12,8 @@ function installAtomicBeta(cb) {
   });
 }
 
-function installAtomicV2(cb) {
-  exec("npm i @coveo/atomic@2.0.0-pre.6", function (err, stdout, stderr) {
+function installAtomicNext(cb) {
+  exec("npm i @coveo/atomic@next", function (err, stdout, stderr) {
     console.log(stdout);
     console.log(stderr);
     cb(err);
@@ -82,7 +82,7 @@ function watch() {
 }
 
 exports.default = gulp.series(
-  installAtomicV2,
+  installAtomicNext,
   copyResource,
   copyExtraResources,
   copyThemes,

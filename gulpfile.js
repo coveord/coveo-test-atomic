@@ -22,7 +22,7 @@ function installAtomicAlpha(cb) {
 
 function getTestPages(cb) {
   return svn.commands.checkout(
-    "https://github.com/coveo/ui-kit/branches/prerelease/v2/packages/atomic/src/pages",
+    "https://github.com/coveo/ui-kit/trunk/packages/atomic/src/pages",
     "./public/",
     function (err, stdout, stderr) {
       console.log(stdout);

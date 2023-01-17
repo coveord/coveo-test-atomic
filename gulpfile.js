@@ -12,14 +12,6 @@ function installAtomicBeta(cb) {
   });
 }
 
-function installAtomicV2(cb) {
-  exec("npm i @coveo/atomic@beta", function (err, stdout, stderr) {
-    console.log(stdout);
-    console.log(stderr);
-    cb(err);
-  });
-}
-
 function installAtomicAlpha(cb) {
   exec("npm i @coveo/atomic@alpha", function (err, stdout, stderr) {
     console.log(stdout);
@@ -92,7 +84,7 @@ exports.default = gulp.series(
 );
 
 exports.dev = gulp.series(
-  installAtomicV2,
+  installAtomicBeta,
   copyResource,
   copyExtraResources,
   copyThemes,

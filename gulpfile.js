@@ -74,7 +74,7 @@ function watch() {
 }
 
 exports.default = gulp.series(
-  installAtomicV2,
+  installAtomicBeta,
   copyResource,
   copyExtraResources,
   copyThemes,

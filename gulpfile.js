@@ -13,7 +13,7 @@ function installAtomicBeta(cb) {
 }
 
 function installAtomicV2(cb) {
-  exec("npm i @coveo/atomic@2.0.0-pre.7", function (err, stdout, stderr) {
+  exec("npm i @coveo/atomic@beta", function (err, stdout, stderr) {
     console.log(stdout);
     console.log(stderr);
     cb(err);

@@ -6,14 +6,11 @@
   "scripts": {
     "start": "npx serve"
   },
-  "engines": {
-    "node": "14.x"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@coveo/atomic": "^2.38.0",
+    "@coveo/atomic": "^2.39.1-pre.acc257458b",
     "child_process": "^1.0.2",
     "gulp": "^4.0.2",
     "gulp-debug": "^4.0.0",

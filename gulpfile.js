@@ -49,7 +49,7 @@ function copyResource() {
 
 function copyLocalTestFiles() {
   return gulp
-    .src(["./testPages/*"])
+    .src(["./testPages/**/*"])
     .pipe(gulp.dest("./public"))
     .pipe(debug());
 }

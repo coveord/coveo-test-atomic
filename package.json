@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@coveo/atomic": "^2.40.1-pre.38e1735f02",
+    "@coveo/atomic": "^2.40.3-pre.69f2db5f4e",
     "child_process": "^1.0.2",
     "gulp": "^4.0.2",
     "gulp-debug": "^4.0.0",

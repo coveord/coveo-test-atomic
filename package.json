@@ -4,19 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npx serve"
+    "start": "npx serve",
+    "postinstall": "npx gulp alpha"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@coveo/atomic": "^2.40.3-pre.69f2db5f4e",
+    "@coveo/atomic": "^2.73.0-pre.a389b402e2",
     "child_process": "^1.0.2",
+    "github-download-directory": "^3.0.0",
     "gulp": "^4.0.2",
     "gulp-debug": "^4.0.0",
     "gulp-download": "^0.0.1",
     "gulp-livereload": "^4.0.2",
-    "node-svn-ultimate": "^1.2.1",
     "serve": "^11.3.2"
   }
 }

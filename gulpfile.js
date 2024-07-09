@@ -2,7 +2,7 @@ const gulp = require("gulp");
 const debug = require("gulp-debug");
 const exec = require("child_process").exec;
 const livereload = require("gulp-livereload");
-const svn = require("node-svn-ultimate");
+var downloader = require('github-download-directory');
 
 function installAtomicBeta(cb) {
   exec("npm i @coveo/atomic@beta", function (err, stdout, stderr) {
@@ -28,16 +28,22 @@ function installAtomicLatest(cb) {
   });
 }
 
-function getTestPages(cb) {
-  return svn.commands.checkout(
-    "https://github.com/coveo/ui-kit/trunk/packages/atomic/src/pages",
-    "./public/",
-    function (err, stdout, stderr) {
-      console.log(stdout);
-      console.log(stderr);
-      cb(err);
-    }
-  );
+function getTestPages() {
+  return downloader.download('coveo', 'ui-kit', 'packages/atomic/src/pages').then(console.log, console.error);
+}
+
+function moveDownloadedFiles() {
+  return gulp
+    .src(["./packages/atomic/src/pages/**/*"])
+    .pipe(gulp.dest("./public/pages/"))
+    .pipe(debug())
+}
+
+function deleteOriginalFiles() {
+  return exec("rm -rfv ./packages", function (_, stdout, stderr) {
+    console.log(stdout);
+    console.log(stderr);
+  });
 }
 
 function copyResource() {
@@ -68,17 +74,14 @@ function copyThemes() {
     .pipe(debug());
 }
 
-function watch() {
-  livereload.listen();
-  gulp.watch("./testPages/*.html", gulp.series(getTestPages));
-}
-
 exports.alpha = gulp.series(
   installAtomicAlpha,
   copyResource,
   copyExtraResources,
   copyThemes,
   getTestPages,
+  moveDownloadedFiles,
+  deleteOriginalFiles,
   copyLocalTestFiles
 );
 
@@ -88,6 +91,8 @@ exports.beta = gulp.series(
   copyExtraResources,
   copyThemes,
   getTestPages,
+  moveDownloadedFiles,
+  deleteOriginalFiles,
   copyLocalTestFiles,
 
 );
@@ -98,5 +103,7 @@ exports.latest = gulp.series(
   copyExtraResources,
   copyThemes,
   getTestPages,
+  moveDownloadedFiles,
+  deleteOriginalFiles,
   copyLocalTestFiles
 );

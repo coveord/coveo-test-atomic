@@ -79,9 +79,9 @@ exports.alpha = gulp.series(
   copyResource,
   copyExtraResources,
   copyThemes,
-  getTestPages,
-  moveDownloadedFiles,
-  deleteOriginalFiles,
+  // getTestPages,
+  // moveDownloadedFiles,
+  // deleteOriginalFiles,
   copyLocalTestFiles
 );
 

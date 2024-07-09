@@ -1,0 +1,2 @@
+import{r as s,g as t}from"./p-00525453.js";import{h as o}from"./p-005f6e15.js";import"./p-effc0f7e.js";import"./p-e9c4f463.js";const r=class{constructor(t){s(this,t)}componentDidRender(){o(this.host)}get host(){return t(this)}};export{r as atomic_product_section_badges};
+//# sourceMappingURL=p-0b75099b.entry.js.map

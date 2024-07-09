@@ -1,0 +1,2 @@
+import{h as e}from"./p-00525453.js";import{S as r}from"./p-62de6183.js";const n=n=>{const{sort:o}=n;const s=t(o);return e(r,{...n,label:s,value:s})};function t(e){if(e.by==="relevance"){return"relevance"}else{return e.fields.map((e=>e.displayName||e.name)).join(" ")}}function o(e,r){const n={};r.forEach((e=>{n[t(e)]=e}));return n[e]}export{n as C,o as g};
+//# sourceMappingURL=p-73b74859.js.map
